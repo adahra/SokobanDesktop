@@ -35,6 +35,7 @@ public class Sokoban extends JFrame {
         Board board = new Board();
         add(board);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setSize(board.getBoardWidth() + OFFSET, board.getBoardHeight() + 2 * OFFSET);
         setLocationRelativeTo(null);
         setTitle("Sokoban");
