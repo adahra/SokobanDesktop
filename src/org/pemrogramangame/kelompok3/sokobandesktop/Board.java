@@ -94,7 +94,7 @@ public class Board extends JPanel {
 	
 	
 	public void buildWors(Graphics g) {
-		g.setColor(new Color(0, 0, 255));
+		g.setColor(new Color(77, 34, 19));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		ArrayList world = new ArrayList();
 		world.addAll(walls);
@@ -110,7 +110,7 @@ public class Board extends JPanel {
 			}
 			
 			if (completed) {
-				g.setColor(new Color(255, 0, 0));
+				g.setColor(new Color(187, 180, 115));
 				g.drawString("Completed", 25, 20);
 			}
 		}
