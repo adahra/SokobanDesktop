@@ -94,89 +94,89 @@ public class Board extends JPanel {
 	
 	
 	public void buildWors(Graphics g) {
-		g.setColor(new Color(77, 34, 19));
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		ArrayList world = new ArrayList();
-		world.addAll(walls);
-		world.addAll(areas);
-		world.addAll(baggs);
-		world.add(soko);
-		for (int i = 0; i < world.size(); i++) {
-			Actor item = (Actor) world.get(i);
-			if ((item instanceof Player) || (item instanceof Baggage)) {
-				g.drawImage(item.getImage(), item.x() + 2, item.y() + 2, this);
-			} else {
-				g.drawImage(item.getImage(), item.x(), item.y(), this);
-			}
-			
-			if (completed) {
-				g.setColor(new Color(187, 180, 115));
-				g.drawString("Completed", 25, 20);
-			}
-		}
+            g.setColor(new Color(77, 34, 19));
+            g.fillRect(0, 0, this.getWidth(), this.getHeight());
+            ArrayList world = new ArrayList();
+            world.addAll(walls);
+            world.addAll(areas);
+            world.addAll(baggs);
+            world.add(soko);
+            for (int i = 0; i < world.size(); i++) {
+                Actor item = (Actor) world.get(i);
+                if ((item instanceof Player) || (item instanceof Baggage)) {
+                    g.drawImage(item.getImage(), item.x() + 2, item.y() + 2, this);
+                } else {
+                    g.drawImage(item.getImage(), item.x(), item.y(), this);
+                }
+	
+                if (completed) {
+                    g.setColor(new Color(187, 180, 115));
+                    g.drawString("Completed", 25, 20);
+                }
+            }
 	}
 	
         @Override
 	public void paint(Graphics g) {
-		super.paint(g);
-		buildWors(g);
+            super.paint(g);
+            buildWors(g);
 	}
 	
 	class TAdapter extends KeyAdapter {
-                @Override
-		public void keyPressed(KeyEvent e) {
-                    if (completed) {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (completed) {
+                    return;
+                }
+                    
+                int key = e.getKeyCode();
+                    
+                if (key == KeyEvent.VK_LEFT) {
+                    if (checkWallCollision(soko, LEFT_COLLISION)) {
                         return;
                     }
-                    
-                    int key = e.getKeyCode();
-                    
-                    if (key == KeyEvent.VK_LEFT) {
-                        if (checkWallCollision(soko, LEFT_COLLISION)) {
-                            return;
-                        }
                         
-                        if (checkBagCollision(LEFT_COLLISION)) {
-                            return;
-                        }
-                        
-                        soko.move(-SPACE, 0);
-                    } else if (key == KeyEvent.VK_RIGHT) {
-                        if (checkWallCollision(soko, RIGHT_COLLISION)) {
-                            return;
-                        }
-                        
-                        if (checkBagCollision(RIGHT_COLLISION)) {
-                            return;
-                        }
-                        
-                        soko.move(SPACE, 0);
-                    } else if (key == KeyEvent.VK_UP) {
-                        if (checkWallCollision(soko, TOP_COLLISION)) {
-                            return;
-                        }
-                        
-                        if (checkBagCollision(TOP_COLLISION)) {
-                            return;
-                        }
-                        
-                        soko.move(0, -SPACE);
-                    } else if (key == KeyEvent.VK_DOWN) {
-                        if (checkWallCollision(soko, BOTTOM_COLLISION)) {
-                            return;
-                        }
-                        
-                        if (checkBagCollision(BOTTOM_COLLISION)) {
-                            return;
-                        }
-                        
-                        soko.move(0, SPACE);
-                    } else if (key == KeyEvent.VK_R) {
-                        restartLevel();
+                    if (checkBagCollision(LEFT_COLLISION)) {
+                        return;
                     }
+                        
+                    soko.move(-SPACE, 0);
+                } else if (key == KeyEvent.VK_RIGHT) {
+                    if (checkWallCollision(soko, RIGHT_COLLISION)) {
+                        return;
+                    }
+                        
+                    if (checkBagCollision(RIGHT_COLLISION)) {
+                        return;
+                    }
+                        
+                    soko.move(SPACE, 0);
+               } else if (key == KeyEvent.VK_UP) {
+                    if (checkWallCollision(soko, TOP_COLLISION)) {
+                        return;
+                    }
+                        
+                    if (checkBagCollision(TOP_COLLISION)) {
+                        return;
+                    }
+                        
+                    soko.move(0, -SPACE);
+               } else if (key == KeyEvent.VK_DOWN) {
+                    if (checkWallCollision(soko, BOTTOM_COLLISION)) {
+                        return;
+                    }
+                        
+                    if (checkBagCollision(BOTTOM_COLLISION)) {
+                        return;
+                    }
+                        
+                    soko.move(0, SPACE);
+                } else if (key == KeyEvent.VK_R) {
+                    restartLevel();
+                }
                     
-                    repaint();
-		}
+                repaint();
+            }
 	}
         
         private boolean checkWallCollision(Actor actor, int type) {
