@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
-	private static final long serialVersionUID = 1L;
-	
 	private final int OFFSET = 30;
 	private final int SPACE = 20;
 	private final int LEFT_COLLISION = 1;
@@ -22,6 +20,7 @@ public class Board extends JPanel {
 	private final ArrayList baggs = new ArrayList();
 	private final ArrayList areas = new ArrayList();
 	private Player soko;
+        private int mmove;
 	private int w = 0;
 	private int h = 0;
 	private boolean completed = false;
@@ -33,9 +32,9 @@ public class Board extends JPanel {
 		                     +"####### ###   #\n"
 		                     +"#..  ##  $  ###\n"
 		                     +"#..       $ ## \n"
-		                     +"#..  ##$  $ @# \n"
+		                     +"#..  ##$  $  # \n"
 		                     +"#..  ##  $$ ## \n"
-		                     +"#######      # \n"
+		                     +"#######     @# \n"
 		                     +"     ######### \n";
  
 	public Board() {
@@ -112,6 +111,7 @@ public class Board extends JPanel {
                 if (completed) {
                     g.setColor(new Color(187, 180, 115));
                     g.drawString("Completed", 25, 20);
+                    g.drawString("With: " + getMove() + " moves", 25, 35);
                 }
             }
 	}
@@ -141,6 +141,7 @@ public class Board extends JPanel {
                     }
                         
                     soko.move(-SPACE, 0);
+                    mmove += 1;
                 } else if (key == KeyEvent.VK_RIGHT) {
                     if (checkWallCollision(soko, RIGHT_COLLISION)) {
                         return;
@@ -151,6 +152,7 @@ public class Board extends JPanel {
                     }
                         
                     soko.move(SPACE, 0);
+                    mmove += 1;
                } else if (key == KeyEvent.VK_UP) {
                     if (checkWallCollision(soko, TOP_COLLISION)) {
                         return;
@@ -161,6 +163,7 @@ public class Board extends JPanel {
                     }
                         
                     soko.move(0, -SPACE);
+                    mmove += 1;
                } else if (key == KeyEvent.VK_DOWN) {
                     if (checkWallCollision(soko, BOTTOM_COLLISION)) {
                         return;
@@ -171,7 +174,8 @@ public class Board extends JPanel {
                     }
                         
                     soko.move(0, SPACE);
-                } else if (key == KeyEvent.VK_R) {
+                    mmove += 1;
+                } else if (key == KeyEvent.VK_U) {
                     restartLevel();
                 }
                     
@@ -340,10 +344,15 @@ public class Board extends JPanel {
             areas.clear();
             baggs.clear();
             walls.clear();
+            mmove = 0;
             initWorld();
             if (completed) {
                 completed = false;
             }
+        }
+        
+        private int getMove() {
+            return mmove;
         }
 
 }
