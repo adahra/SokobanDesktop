@@ -60,34 +60,34 @@ public class Board extends JPanel {
 		Area a;
 		
 		for (int i = 0; i < level.length(); i++) {
-			char item = level.charAt(i);
-			if (item == '\n') {
-				y += SPACE;
-				if (this.w < y) {
-					this.w = x;
-				}
+                    char item = level.charAt(i);
+                    if (item == '\n') {
+                        y += SPACE;
+                        if (this.w < y) {
+                            this.w = x;
+                        }
 				
-				x = OFFSET;
-			} else if (item == '#') {
-				wall = new Wall(x, y);
-				walls.add(wall);
-				x += SPACE;
-			} else if (item == '$') {
-				b = new Baggage(x, y);
-				baggs.add(b);
-				x += SPACE;
-			} else if (item == '.') {
-				a = new Area(x, y);
-				areas.add(a);
-				x += SPACE;
-			} else if (item == '@') {
-				soko = new Player(x, y);
-				x += SPACE;
-			} else if (item == ' ') {
-				x += SPACE;
-			}
+                        x = OFFSET;
+                    } else if (item == '#') {
+                        wall = new Wall(x, y);
+                        walls.add(wall);
+                        x += SPACE;
+                    } else if (item == '$') {
+                        b = new Baggage(x, y);
+                        baggs.add(b);
+                        x += SPACE;
+                    } else if (item == '.') {
+                        a = new Area(x, y);
+                        areas.add(a);
+                        x += SPACE;
+                    } else if (item == '@') {
+                        soko = new Player(x, y);
+                        x += SPACE;
+                    } else if (item == ' ') {
+                        x += SPACE;
+                    }
 			
-			h = y;
+                    h = y;
 		}
 	}
 	
