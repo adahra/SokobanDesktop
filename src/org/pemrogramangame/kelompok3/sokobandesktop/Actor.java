@@ -38,34 +38,18 @@ public class Actor {
 	}
 	
 	public boolean isLeftCollision(Actor actor) {
-		if (((this.x() - SPACE) == actor.x()) && (this.y() == actor.y())) {
-			return true;
-		} else {
-			return false;
-		}
+            return ((this.x() - SPACE) == actor.x()) && (this.y() == actor.y());
 	}
 	
 	public boolean isRightCollision(Actor actor) {
-		if (((this.x() + SPACE) == actor.x()) && (this.y() == actor.y())) {
-			return true;
-		} else {
-			return false;
-		}
+            return ((this.x() + SPACE) == actor.x()) && (this.y() == actor.y());
 	}
 	
 	public boolean isTopCollision(Actor actor) {
-		if (((this.y() - SPACE) == actor.y()) && (this.x() == actor.x())) {
-			return true;
-		} else {
-			return false;
-		}
+            return ((this.y() - SPACE) == actor.y()) && (this.x() == actor.x());
 	}
 	
 	public boolean isBottomCollision(Actor actor) {
-		if (((this.y() + SPACE) == actor.y()) && (this.x() == actor.x())) {
-			return true;
-		} else {
-			return false;
-		}
+            return ((this.y() + SPACE) == actor.y()) && (this.x() == actor.x());
 	}
 }
